@@ -8,7 +8,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		
-		config.title = "Commit sync refresh?";
+		config.title = "Magic and Metal";
 		config.width = 1280;
 		config.height = 720;
 		
