@@ -13,7 +13,7 @@ public class MainGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("assets/badlogic.jpg");
+		img = new Texture("assets/DungeonFloor1.png");
 	}
 
 	@Override
