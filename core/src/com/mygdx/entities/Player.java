@@ -1,9 +1,8 @@
 package com.mygdx.entities;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class Player extends Actor{
 	Integer health;
@@ -17,14 +16,16 @@ public class Player extends Actor{
 	public Player(String s){
 		picture = new Texture("assets/Player.png");
 		name = s;
+		this.setPosition(10, 10);
 	}
 	
-	public void render(SpriteBatch batch){
-		batch.begin();
-		batch.draw(picture, x, y);
-		
-		
-		batch.end();
+	public Player(){
+		picture = new Texture("assets/Player.png");
+		this.setPosition(100, 100);
+	}
+	
+	public void render(Batch batch){
+		batch.draw(picture, getX(), getY(), 100, 100);
 	}
 	
 
