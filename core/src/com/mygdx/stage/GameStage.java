@@ -2,12 +2,13 @@ package com.mygdx.stage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.entities.Player;
 import com.mygdx.game.MainGame;
 
-public class GameStage extends Stage{
+public class GameStage extends Stage implements InputProcessor{
 	final MainGame game;
 	
 	Texture background;
@@ -47,6 +48,25 @@ public class GameStage extends Stage{
 		
 		player.act(delta);
 		
+	}
+	
+	@Override
+	public boolean keyUp(int keycode){
+		
+		if(keycode == Keys.A){
+			player.stop(0);
+		}
+		if(keycode == Keys.D){
+			player.stop(1);
+		}
+		if(keycode == Keys.W){
+			player.stop(2);
+		}
+		if(keycode == Keys.S){
+			player.stop(3);
+		}
+		
+		return true;
 	}
 	
 	@Override

@@ -17,13 +17,19 @@ public class Player extends Actor{
 	float vx;
 	float vy;
 	
-	boolean[] moveDir;
+	boolean moveLeft;
+	boolean moveRight;
+	boolean moveUp;
+	boolean moveDown;
 	
 	public Player(String s){
 		picture = new Texture("assets/Player.png");
 		name = s;
 		this.setPosition(10, 10);
-		moveDir = new boolean[4];
+		moveLeft = false;
+		moveRight = false;
+		moveUp = false;
+		moveDown = false;
 	}
 	
 	public Player(){
@@ -32,20 +38,56 @@ public class Player extends Actor{
 	}
 	
 	public void render(Batch batch){
-		batch.draw(picture, getX(), getY(), 100, 100);
+		batch.draw(picture, getX(), getY(), 64, 128);
 	}
 	
 	public void act(float delta){
 		this.setX(this.getX() + vx);
 		this.setY(this.getY() + vy);
+		
+		
+		if(!moveLeft && !moveRight){
+			if(vx > 0){
+				vx -= .5f;
+			}else if(vx < 0){
+				vx += .5f;
+			}
+		}
+		if(!moveUp && !moveDown){
+			if(vy > 0){
+				vy -= .5f;
+			}else if(vy < 0){
+				vy += .5f;
+			}
+		}
+		
 		Gdx.app.log("Player move()", "vX:" + vx + " vY:" + vy);
+	}
+	
+	public void stop(int direction){
+		switch(direction){
+		case 0:
+			moveLeft = false;
+			break;
+		case 1:
+			moveRight = false;
+			break;
+		case 2:
+			moveUp = false;
+			break;
+		case 3:
+			moveDown = false;
+			break;
+		default:
+			break;
+		}
 	}
 	
 	public void move(int direction){
 		switch(direction){
 		case 0:
-			moveDir[0] = true;
-			moveDir[1] = false;
+			moveLeft = true;
+			moveRight = false;
 			
 			if(vx >= -Constants.MAX_VELOCITY){
 				vx -= Constants.ACCELERATION;
@@ -54,8 +96,8 @@ public class Player extends Actor{
 			}
 			break;
 		case 1:
-			moveDir[0] = false;
-			moveDir[1] = true;
+			moveLeft = false;
+			moveRight = true;
 			
 			if(vx <= Constants.MAX_VELOCITY){
 				vx += Constants.ACCELERATION;
@@ -64,8 +106,8 @@ public class Player extends Actor{
 			}
 			break;
 		case 2:
-			moveDir[2] = true;
-			moveDir[3] = false;
+			moveUp = true;
+			moveDown = false;
 			
 			if(vy <= Constants.MAX_VELOCITY){
 				vy += Constants.ACCELERATION;
@@ -74,8 +116,8 @@ public class Player extends Actor{
 			}
 			break;
 		case 3:
-			moveDir[2] = false;
-			moveDir[3] = true;
+			moveUp = false;
+			moveDown = true;
 			
 			if(vy >= -Constants.MAX_VELOCITY){
 				vy -= Constants.ACCELERATION;
