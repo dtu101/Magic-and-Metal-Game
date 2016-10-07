@@ -1,5 +1,7 @@
 package com.mygdx.stage;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.entities.Player;
@@ -28,6 +30,23 @@ public class GameStage extends Stage{
 	@Override
 	public void act(float delta){
 		super.act(delta);
+		
+		//Movement commands
+		if(Gdx.input.isKeyPressed(Keys.A)){
+			player.move(0);
+		}
+		if(Gdx.input.isKeyPressed(Keys.D)){
+			player.move(1);
+		}
+		if(Gdx.input.isKeyPressed(Keys.W)){
+			player.move(2);
+		}
+		if(Gdx.input.isKeyPressed(Keys.S)){
+			player.move(3);
+		}
+		
+		player.act(delta);
+		
 	}
 	
 	@Override

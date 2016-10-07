@@ -19,7 +19,7 @@ public class GameScreen implements Screen{
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		
+		Gdx.input.setInputProcessor(stage);
 	}
 
 	@Override
